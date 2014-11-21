@@ -1,4 +1,25 @@
-(working on a ramdisk to improve io speed)
+
+# Setup
+
+(working on a ramdisk if you can to improve io speed)
+
+To be able to find the scripts
+
+    bootstrap=/where/you/cloned/this/repo
+
+# Synthetic, after a git clone of the bc
+
+    git checkout -b wip origin/master
+    git filter-branch --tree-filter $bootstrap/erase.sh --prune-empty
+    
+    # I don't have the time to try again, but this next line might be useless by now
+    git rebase --root --preserve-merges HEAD
+    
+    git filter-branch -f --prune-empty --parent-filter $bootstrap/rewrite-parent.rb
+    git filter-branch -f --msg-filter $bootstrap/remessage.awk
+
+    
+# Old WIP
 
     bootstrap=/where/you/cloned/this/repo
 
