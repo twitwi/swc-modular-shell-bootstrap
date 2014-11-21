@@ -39,11 +39,11 @@ git log  --oneline --topo-order  | awk '{print NR " " $0}'|less
 e part de la fin
 
 
-(cd .. && rm -rf bc && cp -r bcbase bc) && cd $(pwd)
+(cd .. && rm -rf bc && cp -r bcbase bc) && cd $(pwd) && git checkout -b wip origin/master
 
     # git checkout -b bash-novice 3a38907
 
-git filter-branch --tree-filter $boostrap/erase.sh --prune-empty
+    git filter-branch --tree-filter $bootstrap/erase.sh --prune-empty
 
 (cd .. && cp -r bc bc-before-rebase)
 
@@ -52,6 +52,9 @@ git filter-branch --tree-filter $boostrap/erase.sh --prune-empty
 
     # (without --preserve-merges) … that will complain about an empty/conflict commit (rebase in progress; onto 30659e7) and it will also remove the merges (producing a linear history)
     # git reset    git rebase --continue    git checkout -b newone
+
+(cd .. && cp -r bc bc-after-rebase)
+
 
 but it is not sufficient, so we use this <http://git.661346.n2.nabble.com/Removing-useless-merge-commit-with-quot-filter-branch-quot-td7356544.html> that really cleans the empty commits
 
@@ -64,8 +67,7 @@ Comparing this with the current master (modular-shell/master) that is supposed t
     git -C $modmaster log --topo-order --oneline > ,,modmaster
     diff -u <(sed 's@^........@@g' ,,modmaster)  <(sed 's@^........@@g' ,,here)
 
-it seems that mainly the merge have been remove (and the updated commit message are back to the original versions) 
-
+still there are some messages that need to be cleaned up
 rewrite the messages
 
     git filter-branch -f --msg-filter $bootstrap/remessage.awk

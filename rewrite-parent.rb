@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-# http://git.661346.n2.nabble.com/Removing-useless-merge-commit-with-quot-filter-branch-quot-td7356544.html
+# taken from: http://git.661346.n2.nabble.com/Removing-useless-merge-commit-with-quot-filter-branch-quot-td7356544.html
 
 old_parents = gets.chomp.gsub('-p ', ' ')
 

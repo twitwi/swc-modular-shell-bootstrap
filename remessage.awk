@@ -16,6 +16,14 @@ NR==1 && /In the novice shell lesson 03-pipefilter, changed sort to sort -n\./ {
     next;
 }
 
+NR==1 && /1\.\s+Making filenames in `find` example match filenames/ {
+    print "find: Use -print and adjust filenames to match the diagrams";
+    print "";
+    print "1.  Making filenames in `find` example match filenames in diagram.";
+    print "2.  Using `-print` with `find`.";
+    next;
+}
+
 NR==1 && /Corrects runtime calculation for goostat and goodiff\./ {
     print "Corrects runtime calculation for goostat and goodiff";
     print "";
@@ -24,12 +32,5 @@ NR==1 && /Corrects runtime calculation for goostat and goodiff\./ {
     next;
 }
 
-NR==1 && /1\.\s+Making filenames in `find` example match filenames/ {
-    print "find: Use -print and adjust filenames to match the diagrams";
-    print "";
-    print "1.  Making filenames in `find` example match filenames in diagram.";
-    print "2.  Using `-print` with `find`.";
-    next;
-}
 
 {print}
